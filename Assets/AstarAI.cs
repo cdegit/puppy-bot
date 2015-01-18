@@ -45,8 +45,10 @@ public class AstarAI : MonoBehaviour {
 			return;
 		}
 		
+		// reached the end of the path
 		if (currentWaypoint >= path.vectorPath.Count) {
-			Debug.Log ("End Of Path Reached");
+			EventManager.TriggerWolfGoalReached();
+			path = null;
 			return;
 		}
 		
@@ -61,5 +63,12 @@ public class AstarAI : MonoBehaviour {
 			currentWaypoint++;
 			return;
 		}
+	}
+
+	public void SetTargetPosition (Vector3 newTarget) {
+		//Start a new path to the targetPosition, return the result to the OnPathComplete function
+		seeker = GetComponent<Seeker>();
+		seeker.StartPath (transform.position, newTarget, OnPathComplete);
+		Debug.Log ("changed target");
 	}
 } 
