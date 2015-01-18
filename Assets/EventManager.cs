@@ -10,10 +10,10 @@ public class EventManager : MonoBehaviour
     public static event WolfGoalReached OnWolfGoalReached;
 
     public static void TriggerWolfDead() {
-    	OnWolfDead();
+    	if (OnWolfDead != null) OnWolfDead();
     }
 
     public static void TriggerWolfGoalReached() {
-    	OnWolfGoalReached();
+    	if (OnWolfGoalReached != null) OnWolfGoalReached();
     }
 }
